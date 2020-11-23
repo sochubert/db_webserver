@@ -141,7 +141,7 @@ td {
     font-size: 1em;
     /*padding-top: 7px;*/
     height: 5rem;
-    color: #fff;
+    color: black;
     margin: 10px;
 }
 
@@ -266,7 +266,7 @@ body {
 .w3ls-reg {
     width: 100%;
     /*margin: 0 5vw;*/
-    background: rgba(128, 128, 128, 0.34);
+    /*background: rgba(128, 128, 128, 0.34);*/
     padding: 3.5vw;
     box-sizing: border-box;
     display: flex;
@@ -371,7 +371,12 @@ button {
 .checkbox_size{
     padding:  0rem 1rem;
     width: 100%;
-    border: 2px solid #903479;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+.border-right{
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
 }
 
 ul.seat_w3ls {

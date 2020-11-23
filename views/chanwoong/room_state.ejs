@@ -96,9 +96,9 @@
                     <tr>
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
-                        <td>
-                            <div class="checkbox_size">
-                                <a href="" >객실 : <%=100*j+i%></a>
+                        <td class="border-right">
+                            <div class="checkbox_size" id =<%=100*j+i%>>
+                                <a style="font-size: 0.9rem" href="" >객실 : <%=100*j+i%></a>
                             </div>
                         </td>
                         <% } %>
