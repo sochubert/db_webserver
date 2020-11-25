@@ -4,7 +4,7 @@ var connection = require('./db');
 
 
 router.get('/', function(req, res, next) {
-    var sql = "SELECT * FROM PERSON WHERE PERSON_ID = ?";
+    var sql = "SELECT * FROM PERSON NATURAL JOIN ADDRESS NATURAL JOIN CUSTOMER WHERE CUSTOMER_ID = ?";
     connection.query(sql,[req.cookies['customer_id']], function (error, result, fields) {
         if (error) {
             console.log(error);

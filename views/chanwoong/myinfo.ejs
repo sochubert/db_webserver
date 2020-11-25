@@ -26,8 +26,8 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="probootstrap-slider-text text-center">
                             <p><img src="img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
-                            <h1 class="probootstrap-heading probootstrap-animate">Welcome to our hotel</h1>
-                            <div class="probootstrap-animate probootstrap-sub-wrap">Please enter your email and password <p/> If you become a member of our hotel, you can receive various services and benefits</div>
+                            <h1 class="probootstrap-heading probootstrap-animate">Welcome to your information</h1>
+                            <div class="probootstrap-animate probootstrap-sub-wrap"></div>
                         </div>
                     </div>
                 </div>
@@ -72,16 +72,20 @@
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Birth</label>
-                        <input type="text" value="<%= q.BIRTH %>" class="form-control" disabled />
+                        <input type="text" value="<%= q.BIRTH.substring(0,10) %>" class="form-control" disabled />
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label>Nation</label>
+                        <input type="text" value="<%= q.NATION %>" class="form-control" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="********" class="form-control">
+                    <input type="text" name="password" value="<%= q.LOGIN_PW %>" class="form-control" disabled />
                 </div>
                 <div class="form-group">
                     <label>Forget Password?</label>
-                    <input type="text" name="forget_password" placeholder="What is your favorite movie?" class="form-control">
+                    <input type="text" name="forget_password" value="<%= q.PW_ANSWER %>" class="form-control" disabled />
                 </div>
                 <label><h3>Contact</h3></label>
                 <div class="form-group">
@@ -98,31 +102,31 @@
                 <div class="row">
                     <div class="col-sm-4 form-group">
                         <label>City</label>
-                        <input type="text" name="add_city" placeholder="Enter City Name Here.." class="form-control">
+                        <input type="text" name="add_city" value="<%= q.ADDRESS1 %>" class="form-control" disabled />
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>State</label>
-                        <input type="text" name="add_state" placeholder="Enter State Name Here.." class="form-control">
+                        <input type="text" name="add_state" value="<%= q.ADDRESS2 %>" class="form-control" disabled />
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Zip</label>
-                        <input type="text" name="zip" placeholder="Enter Zip Code Here.." class="form-control">
+                        <input type="text" name="zip" value="<%= q.ZIP_CODE %>" class="form-control" disabled />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>Street</label>
-                        <input type="text" name="street" placeholder="Enter Street Name Here.." class="form-control">
+                        <input type="text" name="street" value="<%= q.ADDRESS3 %>" class="form-control" disabled />
                     </div>
                     <div class="col-sm-6 form-group">
 
                         <label>Apartment Information</label>
-                        <input type="text" name="apart_num" placeholder="Enter Apartment Information Here.." class="form-control">
+                        <input type="text" name="apart_num" value="<%= q.ADDRESS4 %>" class="form-control" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Detail Address</label>
-                    <textarea placeholder="Enter Detail Address Here.." name="detail_address" rows="3" class="form-control"></textarea>
+                    <input type="text" value="<%= q.ADDRESS5 %>" class="form-control" disabled />
                 </div>
             </form>
             <% } } %>
