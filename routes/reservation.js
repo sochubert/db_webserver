@@ -22,6 +22,13 @@ router.post('/', function (req, res) {
     var child_num = Number(req.body.children);
     var baby_num = Number(req.body.babies);
     var people = adult_num + child_num + baby_num;
+
+    res.cookie('checkin_date',date_arrival);
+    res.cookie('checkout_date',date_departure);
+    res.cookie('adult_num',adult_num);
+    res.cookie('child_num',child_num);
+    res.cookie('baby_num',baby_num);
+    
     var a="",b="",c="";
     var step =1;
     for(var i=0;i<date_arrival.length;i++){
