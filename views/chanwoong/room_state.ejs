@@ -97,8 +97,8 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                            <div class="checkbox_size" id =<%=100*j+i%>>
-                                <a style="font-size: 0.9rem" href="" >객실 : <%=100*j+i%></a>
+                            <div class="checkbox_size">
+                                <button style="font-size: 0.9rem" id =<%=100*j+i%> onclick="myclick()">객실 : <%=100*j+i%></button>
                             </div>
                         </td>
                         <% } %>
@@ -646,8 +646,6 @@
 <script src="js/scripts.min.js"></script>
 <script src="js/main.min.js"></script>
 <script src="js/custom.js"></script>
-
-
 
 <script src = "/socket.io/socket.io.js"></script>
 <script src = '/js/roomstate.js'></script>
