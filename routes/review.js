@@ -3,7 +3,7 @@ var router = express.Router();
 var connection = require('./db');
 
 router.get('/', function(req, res, next) {
-    var sql1 = `SELECT STAR_POINT, CONTENT, DATE, TITLE, ROOM_TYPE, LOGIN_ID FROM REVIEW NATURAL JOIN RESERVATION NATURAL JOIN CUSTOMER ORDER BY DATE DESC;`;
+    var sql1 = `SELECT STAR_POINT, CONTENT, DATE, TITLE, ROOM_TYPE, LOGIN_ID FROM REVIEW NATURAL JOIN RESERVATION NATURAL JOIN CUSTOMER ORDER BY DATE DESC`;
     connection.query(sql1, function (error, result, fields) {
         if (error) {
             console.log(error);
