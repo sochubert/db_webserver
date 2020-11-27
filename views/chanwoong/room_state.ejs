@@ -98,7 +98,10 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                            <input type="button" class="button_size" name=<%=100*j+i%> value="객실<%=100*j+i%>">
+                            <form action="" method="">
+                                <input type="hidden"  name=<%=100*j+i%> value="객실<%=100*j+i%>">
+                                <input type="submit" class="button_size" id=<%=100*j+i%> name=<%=100*j+i%> value="객실<%=100*j+i%>">
+                            </form>
                         </td>
                         <% } %>
                     </tr>
