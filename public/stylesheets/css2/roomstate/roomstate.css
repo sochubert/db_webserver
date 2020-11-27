@@ -368,12 +368,21 @@ button {
     font-family: 'Source Sans Pro', sans-serif;
     cursor: pointer;
 }
-.checkbox_size{
-    padding:  0rem 1rem;
-    width: 100%;
-    border: 2px solid gray;
-    border-radius: 5px;
+.button_size{
+    font-size: 0.9rem;
+    padding: 2rem 0.2rem;
+    width: 5rem;
+    background-color: white;
+    border-bottom: 2px solid #903479;
+    border-right: 2px solid #903479;
+    border-radius: 7px;
 }
+/*.checkbox_size{*/
+/*    padding:  0rem 1rem;*/
+/*    width: 100%;*/
+/*    border: 2px solid gray;*/
+/*    border-radius: 5px;*/
+/*}*/
 .border-right{
     border-right: 1px solid darkgray;
     border-bottom: 1px solid darkgray;

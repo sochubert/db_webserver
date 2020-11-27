@@ -92,18 +92,18 @@
                         <td>11호</td>
                         <td>12호</td>
                     </tr>
+                    <form action="" method="">
                     <% for(var j = 10;j > 0;j--) { %>
                     <tr>
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                            <div class="checkbox_size">
-                                <button style="font-size: 0.9rem" id =<%=100*j+i%> onclick="myclick()">객실 : <%=100*j+i%></button>
-                            </div>
+                            <input type="button" class="button_size" name=<%=100*j+i%> value="객실<%=100*j+i%>">
                         </td>
                         <% } %>
                     </tr>
                     <% } %>
+                    </form>
 <!--                    <tr>-->
 <!--                        <td>Floor 10</td>-->
 <!--                        <td>-->
