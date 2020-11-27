@@ -41,98 +41,98 @@
         <div class="row probootstrap-gutter40">
             <h2 class="mt0" style="color:#6b265a;">My Information</h2>
             <hr class="underhr" >
-            <% if (myinfo != null) { %>
-                <% for (var q of myinfo)  { %>
-            <form action="/myinfo" method="post" class="probootstrap-form">
+            <% if (myedit != null) { %>
+                <% for (var q of myedit)  { %>
+            <form action="/myedit" method="post" class="probootstrap-form">
                 <label><h3>Profile</h3></label>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>Korean First Name</label>
-                        <input type="text" name = "korean_first" value="<%= q.KOR_FIRST_NAME %>" class="form-control" disabled />
+                        <input type="text" name = "korean_first" value="<%= q.KOR_FIRST_NAME %>" class="form-control" disabled/>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>Korean Last Name</label>
-                        <input type="text" name="korean_last" value="<%= q.KOR_LAST_NAME %>" class="form-control" disabled />
+                        <input type="text" name="korean_last" value="<%= q.KOR_LAST_NAME %>" class="form-control" disabled/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>English First Name</label>
-                        <input type="text" name="english_first" value="<%= q.ENG_FIRST_NAME %>" class="form-control" disabled />
+                        <input type="text" name="english_first" value="<%= q.ENG_FIRST_NAME %>" class="form-control" disabled/>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>English Last Name</label>
-                        <input type="text" name="english_last" value="<%= q.ENG_LAST_NAME %>" class="form-control" disabled />
+                        <input type="text" name="english_last" value="<%= q.ENG_LAST_NAME %>" class="form-control" disabled/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 form-group">
                         <label>Gender</label>
-                        <input type="text" value="<%= q.GENDER %>" class="form-control" disabled />
+                        <input type="text" value="<%= q.GENDER %>" class="form-control" disabled/>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Birth</label>
-                        <input type="text" value="<%= q.BIRTH.substring(0,10) %>" class="form-control" disabled />
+                        <input type="text" value="<%= q.BIRTH.substring(0,10) %>" class="form-control" disabled/>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Nation</label>
-                        <input type="text" value="<%= q.NATION %>" class="form-control" disabled />
+                        <input type="text" value="<%= q.NATION %>" class="form-control" disabled/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" name="password" value="<%= q.LOGIN_PW %>" class="form-control" disabled />
+                    <input type="text" name="password" value="<%= q.LOGIN_PW %>" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Forget Password?</label>
-                    <input type="text" name="forget_password" value="<%= q.PW_ANSWER %>" class="form-control" disabled />
+                    <input type="text" name="forget_password" value="<%= q.PW_ANSWER %>" class="form-control">
                 </div>
                 <label><h3>Contact</h3></label>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="text" name="phone_num" value="<%= q.PHONE_NUM %>" class="form-control" disabled />
+                    <input type="text" name="phone_num" value="<%= q.PHONE_NUM %>" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <div class="form-field">
                         <i class="icon icon-mail"></i>
-                        <input type="email" name="email" value="<%= q.EMAIL %>" class="form-control" disabled />
+                        <input type="email" name="email" value="<%= q.EMAIL %>" class="form-control" disabled/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 form-group">
                         <label>City</label>
-                        <input type="text" name="add_city" value="<%= q.ADDRESS1 %>" class="form-control" disabled />
+                        <input type="text" name="add_city" value="<%= q.ADDRESS1 %>" class="form-control">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>State</label>
-                        <input type="text" name="add_state" value="<%= q.ADDRESS2 %>" class="form-control" disabled />
+                        <input type="text" name="add_state" value="<%= q.ADDRESS2 %>" class="form-control">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Zip</label>
-                        <input type="text" name="zip" value="<%= q.ZIP_CODE %>" class="form-control" disabled />
+                        <input type="text" name="zip" value="<%= q.ZIP_CODE %>" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>Street</label>
-                        <input type="text" name="street" value="<%= q.ADDRESS3 %>" class="form-control" disabled />
+                        <input type="text" name="street" value="<%= q.ADDRESS3 %>" class="form-control">
                     </div>
                     <div class="col-sm-6 form-group">
 
                         <label>Apartment Information</label>
-                        <input type="text" name="apart_num" value="<%= q.ADDRESS4 %>" class="form-control" disabled />
+                        <input type="text" name="apart_num" value="<%= q.ADDRESS4 %>" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Detail Address</label>
-                    <textarea readonly="readonly" name="detail_address" rows="3" class="form-control"><%= q.ADDRESS5 %></textarea>
+                    <textarea name="detail_address" rows="3" class="form-control"><%= q.ADDRESS5 %></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Apply">
                 </div>
             </form>
             <% } } %>
-            <div class="form-group">
-                <button class="btn btn-primary btn-lg" onclick = "location.href='myedit'" style="background-color: #903479; border-color: #903479; color: white">EDIT</button>
-            </div>
         </div>
     </div>
 </section>
