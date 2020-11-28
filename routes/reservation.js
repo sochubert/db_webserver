@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
       else{
         step++;
       }
-    }var date_arr=c+"-"+a+"-"+b+" 00:00:00";
+    }var date_arr=c+"-"+b+"-"+a+" 00:00:00";
     a="";b="";c="";step =1;
     for(var i=0;i<date_departure.length;i++){
       if(date_departure[i] != '/'){
@@ -51,7 +51,7 @@ router.post('/', function (req, res) {
       else{
         step++;
       }
-    }var date_dpa=c+"-"+a+"-"+b+" 00:00:00";
+    }var date_dpa=c+"-"+b+"-"+a+" 00:00:00";
   
     var avail_types;
     input_info = {"ROOMTYPE" : room,"DATE_ARR" : date_arr,"DATE_DPAR" : date_dpa,"N_A" : adult_num,"N_C" : child_num,"N_B" : baby_num};

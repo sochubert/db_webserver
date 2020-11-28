@@ -6,9 +6,9 @@ router.get('/', function(req, res, next) {
     var room_type = req.param('room_type');
     var checkin_date = req.cookies.checkin_date;
     var checkout_date = req.cookies.checkout_date;
-    var adult_num = Number(req.cookies.adult_num);
-    var child_num = Number(req.cookies.child_num);
-    var baby_num = Number(req.cookies.baby_num);
+    var adult_num = parseInt(req.cookies.adult_num);
+    var child_num = parseInt(req.cookies.child_num);
+    var baby_num = parseInt(req.cookies.baby_num);
     
     console.log("room_type " + room_type );
 
@@ -38,22 +38,31 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/',function(req,res,next) {
-    var reserv_info = req.body.reserv_info; //배열
-    var room_type = req.body.room_info; 
+    var checkin_date = req.cookies.checkin_date;
+    var checkout_date = req.cookies.checkout_date;
+    var adult_num = parseInt(req.cookies.adult_num);
+    var child_num = parseInt(req.cookies.child_num);
+    var baby_num = parseInt(req.cookies.baby_num);
+
+    var reserv_info = [checkin_date,checkout_date,adult_num,child_num,baby_num];
+
+    var room_type = req.body.room_type; 
     var room_price = req.body.room_price;
-    console.log(room_info);
-    console.log(reserv_info);
+
+
     var card_company = req.body.cardtype;
     var card_valid = req.body.month + "/" + req.body.year;
     var card_cvc = req.body.cvc;
     var card_num = req.body.credit1 + "-" + req.body.credit2 + "-" + req.body.credit3 + "-" + req.body.credit4;
-    var extra_fee = req.body.adult_alp * (room_info.PRICE/5) + req.body.child_alp * (room_info.PRICE/10);
+    var extra_fee = parseInt(req.body.adult_alp) * (room_price/5) + parseInt(req.body.child_alp) * (room_price/10);
     var breakfast_count = Number(req.body.breakfast);
 
     var checkin_date = reserv_info[0];
     var checkout_date = reserv_info[1];
+
+    
     //기태야 고맙다
-    var a="",b="",c="";
+    var a="",b="",c='';
     var step =1;
     for(var i=0;i<checkin_date.length;i++){
       if(checkin_date[i] != '/'){
@@ -64,7 +73,9 @@ router.post('/',function(req,res,next) {
       else{
         step++;
       }
-    }var checkin_date=c+"-"+a+"-"+b+" 00:00:00";
+    }
+    
+    var checkin_date=c+"-"+b+"-"+a+' 00:00:00';
     a="";b="";c="";step =1;
     for(var i=0;i<checkout_date.length;i++){
       if(checkout_date[i] != '/'){
@@ -75,11 +86,10 @@ router.post('/',function(req,res,next) {
       else{
         step++;
       }
-    }var checkout_date=c+"-"+a+"-"+b+" 00:00:00";
+    }var checkout_date=c+"-"+b+"-"+a+' 00:00:00';
     //정말루
-    console.log(room_info.ROOM_TYPE);
-    console.log(checkin_date);
-    console.log(room_info.PRICE);
+
+
 
     
     var sql_card = "insert into CARD values(?,?,?,?,?)";
@@ -110,12 +120,11 @@ router.post('/',function(req,res,next) {
                             if(error){
                                 console.log("쿼리야쿼리");
                             }else{
-                                console.log("tlttldslfksa;dlkfja;sl : " + rows.insertId + " : " + result1.insertId);
                                 connection.query(sql_reservation,[null,rows.insertId,room_type,null,checkin_date,checkout_date,result1.insertId, Number(reserv_info[2]),Number(reserv_info[3]),Number(reserv_info[4]),Number(breakfast_count)],function(error,result2){
                                     if(error){
                                         console.log("reservation query problemm");
                                     }else{
-                                        connection.query(sql_detail_fee,[result2.insertId,extra_fee,null,extra_fee + room_price],function(error,result3){
+                                        connection.query(sql_detail_fee,[result2.insertId,room_price,extra_fee,extra_fee + room_price],function(error,result3){
                                             if(error){
                                                 console.log("마지막에 와서 지랄이네");
                                             }else{
@@ -140,15 +149,19 @@ router.post('/',function(req,res,next) {
             if(error){
                 console.log("쿼리야쿼리");
             }else{
-                
-                connection.query(sql_reservation,[null,req.cookies['customer_id'],room_type,null,checkin_date,checkout_date,result1.insertId,reserv_info[2],reserv_info[3],reserv_info[4],breakfast_count],function(error,result2){
+                var array = [null,parseInt(req.cookies['customer_id']),room_type,null,checkin_date,checkout_date,result1.insertId,reserv_info[2],reserv_info[3],reserv_info[4],breakfast_count];
+                console.log(array);
+                console.log(checkin_date);
+                connection.query(sql_reservation,array,function(error,result2){
                     if(error){
                         console.log("reservation query problemm");
+                        console.log(error);
                     }else{
                         console.log("여기여기");
-                        connection.query(sql_detail_fee,[result2.insertId,extra_fee,null,extra_fee + room_price],function(error,result3){
+                        connection.query(sql_detail_fee,[result2.insertId,room_price,extra_fee,extra_fee + room_price],function(error,result3){
                             if(error){
                                 console.log("마지막에 와서 지랄이네");
+                                console.log(error);
                             }else{
                                 res.clearCookie('checkin_date');
                                 res.clearCookie('checkout_date');
