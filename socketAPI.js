@@ -28,8 +28,8 @@ io.on('connection', function (socket){
     });
 
     socket.on('changeroomstate',function(data){
-       var roomnum=data.roomnum;
-       var statex=data.state;
+       var roomnum=data.roomnumx;
+       var statex=data.statex;
 
        var sql = "UPDATE ROOM SET STATE="+ statex+" WHERE ROOM_NUM="+roomnum;
        //ENUM('AVAILABLE', 'CANNOT_USE','CHECKOUT_DAY','STAYING')
