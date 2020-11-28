@@ -42,7 +42,9 @@
         <div class="row probootstrap-gutter40">
             <h2 class="mt0" style="color:#6b265a;">Booking Form</h2>
             <hr class="underhr" >
+            
             <form action="/booking" method="post" class="probootstrap-form">
+
                 <label><h3>Customer Information</h3></label>
                 <div class="row">
                     <div class="col-sm-6 form-group">
@@ -62,6 +64,7 @@
                             <p class="form-control"><%=cust_info.KOR_LAST_NAME%></p>
                         <% } %>
                         
+
                     </div>
                 </div>
                 <div class="row">
@@ -134,12 +137,14 @@
                         <input type="hidden" name="room_type" value="<%=room_info.ROOM_TYPE%>">
                         <input type="hidden" name="room_price" value="<%=room_info.PRICE%>">
                         <p class="form-control"><%=room_info.ROOM_TYPE%></p>
+
                     </div>
                     <!-- 고정시킨 룸타입을 토대로 기본 성인 인원을 고정시킨다.-->
                     <div class="col-sm-6 form-group">
                         <label for="adults">The Default Capacity</label>
                         <div class="form-field">
                             <p class="form-control"><%=room_info.CAPACITY_DEFAULT%></p>
+
                         </div>
                     </div>
                 </div>
