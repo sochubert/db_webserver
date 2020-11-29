@@ -17,6 +17,7 @@ var logoutRouter = require('./routes/logout');
 var helpRouter = require('./routes/help');
 var faqRouter = require('./routes/faq');
 var reviewRouter = require('./routes/review');
+var bookingRouter = require('./routes/booking');
 
 
 var app = express();
@@ -42,6 +43,13 @@ app.use('/complain',complainRouter);
 app.use('/help', helpRouter);
 app.use('/faq', faqRouter);
 app.use('/review',reviewRouter);
+app.use('/booking',bookingRouter);
+
+
+app.get("https://script.google.com/macros/s/AKfycbxj63IPDhClUPJzBPqiAuiVmARgMF1dtSir2xo-qg/exec",function(req,res){
+  backURL=req.header('Referer') || '/';
+  res.redirect(backURL);
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
