@@ -36,6 +36,7 @@ router.post('/', function (req, res) {
     });
     console.log("수성공");
     res.redirect('/myinfo');
+
 });
 
 // `COMPLAIN_ID`           INT         NOT NULL    AUTO_INCREMENT COMMENT '민원ID',
