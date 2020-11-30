@@ -55,12 +55,12 @@ router.post('/',function (req,res) {
             res.redirect('/login');
         } else{
           console.log("로그인 성공!");
-          employee.emp_id = rows[0]['login_id'];
+          employee.emp_id = rows[0]['EMPLOYEE_ID'];
           employee.emp_name = rows[0]['KOR_LAST_NAME'] + rows[0]['KOR_FIRST_NAME'];
           console.log(employee.customer_id);
 
           console.log("이거나오고 뒤에꺼가 안나온다 그거지??");
-          res.cookie('employee_id', employee.emp_id,{
+          res.cookie('employee_id', parseInt(employee.emp_id),{
             maxAge : 60*60*1000,
           });
           res.cookie('employee_name', employee.emp_name,{
