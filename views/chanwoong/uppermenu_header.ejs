@@ -13,7 +13,7 @@
                  <!-- 로그인 전 보여지는 부분-->
                 <%if(cust_info == null) { %>
                     <li <% if (title == 'Home'){ %> class="active" <% }%>><a href="/">Home</a></li>
-                    <li <% if (title == 'Login'){ %> class="active" <% }%>><a href="/Login">Login</a></li>
+                    <li <% if (title == 'Login'){ %> class="active" <% }%>><a href="/login">Login</a></li>
                     <li <% if (title == 'Register'){ %> class="active" <% }%>><a href="/Register">Register</a></li>
                     <li <% if (title == 'Room'){ %> class="active" <% }%>><a href="/room">Room</a></li>
                     <li class="hidden-xs probootstrap-logo-center"><a href="/"><img src="img/logo_md.png" class="hires" width="181" height="50" alt="Free Bootstrap Template by uicookies.com"></a></li>
@@ -30,15 +30,16 @@
                 -->
                     <span>
                         <%if(cust_info[2] == false){%>
-                            Welcome 
+                            Welcome
                         <%} else {%>
-                            일하자 
+                            일하자
                         <%}%>
                         <%=cust_info[1]%> 
                     </span>
                     <li <% if (title == 'Home'){ %> class="active" <% }%>><a href="/">Home</a></li>
                     <li <% if (title == 'Myinfo'){ %> class="active" <% }%>><a href="/myinfo">Myinfo</a></li>
                     <li <% if (title == 'Logout'){ %> class="active" <% }%>><a href="/logout">logout</a></li>
+
                     <li class="hidden-xs probootstrap-logo-center"><a href="/"><img src="img/logo_md.png" class="hires" width="181" height="50" alt="Free Bootstrap Template by uicookies.com"></a></li>
                     <li <% if (title == 'Help'){ %> class="active" <% }%>><a href="/help">Help</a></li>
                     <%if(cust_info[2] == false) {%> <!--고객일경우-->
@@ -47,6 +48,7 @@
                     <%}%>
                     <li <% if (title == 'Review'){ %> class="active" <% }%>><a href="/Review">Review</a></li>
                     <li <% if (title == 'Help'){ %> class="active" <% }%>><a href="/help">Help</a></li>
+                    <li <% if (title == 'Staff'){ %> class="active" <% }%>><a href="/staff ">Staff</a></li>
                     <li <% if (title == 'Contact'){ %> class="active" <% }%>><a href="/contact ">Contact</a></li>
                     <li <% if (title == 'Complain'){ %> class="active" <% }%>><a href="/complain">Complain</a></li>
 

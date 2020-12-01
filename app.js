@@ -19,9 +19,9 @@ var logoutRouter = require('./routes/logout');
 var helpRouter = require('./routes/help');
 var faqRouter = require('./routes/faq');
 var reviewRouter = require('./routes/review');
+var staffRouter = require('./routes/staff');
 var bookingRouter = require('./routes/booking');
 var staffRouter = require('./routes/staff');
-
 
 var app = express();
 
@@ -48,6 +48,7 @@ app.use('/complain',complainRouter);
 app.use('/help', helpRouter);
 app.use('/faq', faqRouter);
 app.use('/review',reviewRouter);
+app.use('/staff', staffRouter);
 app.use('/booking',bookingRouter);
 app.use('/staff',staffRouter);
 
@@ -64,6 +65,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+
+
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -72,5 +76,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

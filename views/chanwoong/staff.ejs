@@ -39,7 +39,9 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="probootstrap-slider-text text-center">
                             <p><img src="img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
+
                             <h1 class="probootstrap-heading probootstrap-animate">Staff List</h1>
+
                             <div class="probootstrap-animate probootstrap-sub-wrap">Please enter your email and password <p/> If you become a member of our hotel, you can receive various services and benefits</div>
                         </div>
                     </div>
@@ -49,7 +51,9 @@
     </ul>
 </section>
 
+
     <div class="container-fluid">
+
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -72,6 +76,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                     <% if (staff_list != null) { %>
                         <% for (var q of staff_list)  { %>
                         <tr>
@@ -86,6 +91,7 @@
                                     <option value="1" <% if (q.EP_STATE == 1) { %> selected <% } %>>대기</option>
                                     <option value="2" <% if (q.EP_STATE == 2) { %> selected <% } %>>활동중</option>
                                     <option value="3" <% if (q.EP_STATE == 3) { %> selected <% } %>>자리비움</option>
+
                                 </select>
                             </td>
                             <td>
@@ -93,17 +99,21 @@
                                 <label for="modal-btn"> More <i class="uil uil-expand-arrows"></i></label> 
                                 <div class="modal">
                                     <div class="modal-wrap" style="text-align: center;">
+
                                         <h3 style="margin-top: 10px;"><%=q.ENG_FIRST_NAME + " " + q.ENG_LAST_NAME%></h3>
                                         <div>Salary : <%=q.SALARY%></div>
                                         <div>Address : <%=q.ADDRESS%></div>
                                         <div>Login ID : <%=q.LOGIN_ID%></div>
                                         <div>Login PW : <%=q.LOGIN_PW%></div>
+
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
+
                     <% } }%>
+
                 </table>
                 <!-- <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
