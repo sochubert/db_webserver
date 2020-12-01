@@ -44,7 +44,7 @@
         <button type="WRITE" class="btn btn-primary btn-lg" style="float: right;"data-toggle="collapse" href="#writing">WRITE</button>
     </div>
     <div id="writing" class="collapse">
-        <form method="post" action="/#" class="probootstrap-form">
+        <form method="post" action="/review" class="probootstrap-form">
             <div class="row">
                 <div class="col-sm-4 form-group" style="margin-left:10%; margin-bottom:-3%">
                     <input type="text" name='content_title' placeholder="Title" class="form-control">
@@ -84,16 +84,15 @@
                         <div class="review-block-date"><%= review.DATE %></div>
                         <div class="review-block-room"><%= review.ROOM_TYPE %></div>
                         <div class="rating-selected">
-                            <% var i = review.STAR_PORINT %>
-                            <%  if (i == 1) { %>
+                            <%  if (review.STAR_POINT == 1) { %>
                                     <div>★☆☆☆☆</div>
-                            <% } else if (i==2) { %>
+                            <% } else if (review.STAR_POINT== 2) { %>
                                 <div>★★☆☆☆</div>
-                            <% } else if (i==3) { %>
+                            <% } else if (review.STAR_POINT==3) { %>
                                 <div>★★★☆☆</div>
-                            <% } else if (i==4) { %>
+                            <% } else if (review.STAR_POINT==4) { %>
                                 <div>★★★★☆</div>
-                            <% } else { %>
+                            <% } else {  %>
                                 <div>★★★★★</div>
                             <% } %>
                         </div>
