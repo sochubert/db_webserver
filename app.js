@@ -8,16 +8,19 @@ var logger = require('morgan');
 
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login')
+var loginRouter = require('./routes/login');
+var myinfoRouter = require('./routes/myinfo');
+var myeditRouter = require('./routes/myedit');
 var usersRouter = require('./routes/users');
 var reservRouter = require('./routes/reservation');
 var registerRouter = require('./routes/register');
+var complainRouter = require('./routes/complain');
 var logoutRouter = require('./routes/logout');
 var helpRouter = require('./routes/help');
 var faqRouter = require('./routes/faq');
 var reviewRouter = require('./routes/review');
 var staffRouter = require('./routes/staff');
-
+var bookingRouter = require('./routes/booking');
 
 var app = express();
 
@@ -36,12 +39,22 @@ app.use('/logout', logoutRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
+app.use('/myinfo',myinfoRouter);
+app.use('/myedit',myeditRouter);
 app.use('/reservation',reservRouter);
 app.use('/register',registerRouter);
+app.use('/complain',complainRouter);
 app.use('/help', helpRouter);
 app.use('/faq', faqRouter);
 app.use('/review',reviewRouter);
 app.use('/staff', staffRouter);
+app.use('/booking',bookingRouter);
+
+
+app.get("https://script.google.com/macros/s/AKfycbxj63IPDhClUPJzBPqiAuiVmARgMF1dtSir2xo-qg/exec",function(req,res){
+  backURL=req.header('Referer') || '/';
+  res.redirect(backURL);
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

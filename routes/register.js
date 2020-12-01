@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var connection = require('./db');
 
+var input_info = null;
+
 router.get('/',function(req,res, next){
     res.render('../views/chanwoong/register',{title:'Register', cust_info:null});
 });
