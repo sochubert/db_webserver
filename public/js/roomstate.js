@@ -15,7 +15,14 @@ $(function () {
     var socket = io();
 
     socket.on("changeroomstate", function (data){
-        $("#"+data.roomnumx+"0000").attr("color","green");
+        if(data.statex == "AVAILABLE")
+            $("#"+data.roomnumx+"0000").attr("color","blue");
+        else if(data.statex == "CANNOT_USE")
+            $("#"+data.roomnumx+"0000").attr("color","red");
+        else if(data.statex == "CHECKOUT_DAY")
+            $("#"+data.roomnumx+"0000").attr("color","orange");
+        else if(data.statex == "STAYING")
+            $("#"+data.roomnumx+"0000").attr("color","green");
     });
 
 });
