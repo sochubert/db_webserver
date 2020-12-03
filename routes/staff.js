@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         var ep_info = JSON.parse(JSON.stringify(result));
         res.render('../views/chanwoong/staff', {
             title: 'Staff' ,
-            cust_info:null,
+            cust_info:[req.cookies.employee_id, req.cookies.employee_name, true],
             staff_list : ep_info
         });
     })
