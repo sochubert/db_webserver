@@ -8,7 +8,14 @@ router.get('/', function(req, res, next) {
         if (error) {
             console.log(error);
         }
-        res.render('../views/chanwoong/review', {title: 'Review', cust_info: null, reviewData: result})
+        if(!req.cookies['customer_id'] && !req.cookies['employee_id']){
+            res.render('../views/chanwoong/review', {title: 'Review', cust_info: null, reviewData: result})
+        }else if(!req.cookies['employee_id']){
+            res.render('../views/chanwoong/review', {title: 'Review', cust_info: [req.cookies.customer_id, req.cookies.customer_name, false], reviewData: result})
+        }else{
+            res.render('../views/chanwoong/review', {title: 'Review', cust_info: [req.cookies.employee_id, req.cookies.employee_name, true], reviewData: result})
+        }
+        
     });
 });
 

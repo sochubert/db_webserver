@@ -22,14 +22,6 @@ router.get('/', function(req, res, next) {
     }
 });
 
-router.get('/room', function(req, res, next) {
-  res.render('../views/chanwoong/room', { title: 'Room' , cust_info:null});
-  if(!req.cookies['customer_id']){
-
-  } else {
-
-  }
-});
 
 
 module.exports = router;
