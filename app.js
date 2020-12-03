@@ -22,6 +22,7 @@ var reviewRouter = require('./routes/review');
 var staffRouter = require('./routes/staff');
 var bookingRouter = require('./routes/booking');
 var staffRouter = require('./routes/staff');
+var custListRouter = require('./routes/custList');
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use('/review',reviewRouter);
 app.use('/staff', staffRouter);
 app.use('/booking',bookingRouter);
 app.use('/staff',staffRouter);
+app.use('/custList',custListRouter);
 
 
 app.get("https://script.google.com/macros/s/AKfycbxj63IPDhClUPJzBPqiAuiVmARgMF1dtSir2xo-qg/exec",function(req,res){

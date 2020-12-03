@@ -46,6 +46,7 @@
                     <%}else {%>
                         <li <% if (title == 'Complain'){ %> class="active" <% }%>><a href="/complain">Complain</a></li>
                         <li <% if (title == "Staff"){ %>class="active"<%}%>><a href="/staff">Staff</a> </li>
+                        <li <% if (title == "Cust Info"){ %>class="active" <%}%>><a href="/custList">Customer</a></li>
                     <%}%>
                     <li <% if (title == 'Review'){ %> class="active" <% }%>><a href="/Review">Review</a></li>
                     <%if(cust_info[2] == false) {%>
