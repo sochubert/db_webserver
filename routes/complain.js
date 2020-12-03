@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
         connection.query(sql2,function(error,rows){
             var fucking = JSON.parse(JSON.stringify(result));
             var emp = JSON.parse(JSON.stringify(rows));
+            console.log(result[0]);
             res.render('../views/chanwoong/complain', { title: 'Complain' , cust_info:[req.cookies.employee_id, req.cookies.employee_name, true] ,complain:fucking,emp_info:emp});
         });
     });
