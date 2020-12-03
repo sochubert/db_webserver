@@ -11,12 +11,17 @@ BEGIN
 	END WHILE;
     
     SET i = 201;
+    while i <= 212 DO
+		INSERT INTO ROOM VALUES (i,"AVAILABLE","STANDARD_DOUBLE");
+        SET i = i + 1;
+	END WHILE;
+	SET i = 301;
     while i <= 312 DO
 		INSERT INTO ROOM VALUES (i,"AVAILABLE","STANDARD_DOUBLE");
         SET i = i + 1;
 	END WHILE;
     
-    SET i = 301;
+    SET i = 401;
     while i <= 412 DO
 		INSERT INTO ROOM VALUES (i,"AVAILABLE","STANDARD_FAMILY");
         SET i = i + 1;
