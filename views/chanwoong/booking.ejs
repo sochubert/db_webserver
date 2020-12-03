@@ -123,7 +123,7 @@
                     <% if(cust_info == null) { %>
                         <input type="date" name="birth" class="form-control">
                     <% } else { %>
-                        <p class="form-control"><%=cust_info.BIRTH%></p>
+                        <p class="form-control"><%=cust_info.BIRTH.substring(0,10)%></p>
                     <% } %>
                     </div>
                 </div>
