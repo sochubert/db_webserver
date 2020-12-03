@@ -184,7 +184,13 @@
     </script>
     <!-- //script for seat selection -->
 </section>
-
+<section>
+    <% if(reservation != null){%>
+        <%for(var z in reservation){%>
+            <p>이름: <%=z.ENG_FIRST_NAME+z.ENG_LAST_NAME%>  생년:<%=z.BIRTH%> 예약 방:<%=z.ROOM_TYPE%> 체크인:<%=z.CHECKIN_DATE%> 체크아웃:<%=z.CHECKOUT_DATE%> 어른:<%=z.ADULT_NUM%> 아이:<%=z.CHILD_NUM%> 아기:<%=z.BABY_NUM%> </p>
+        <%}%>
+    <%}%>
+</section>
 
 <section class="probootstrap-half">
     <div class="image" style="background-image: url(img/slider_2.jpg);"></div>
