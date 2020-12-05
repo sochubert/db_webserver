@@ -31,7 +31,8 @@ io.on('connection', function (socket){
        var roomnum=data.roomnumx;
        var statex=data.statex;
 
-       var sql = "UPDATE ROOM SET STATE="+ statex+" WHERE ROOM_NUM="+roomnum;
+       var sql = "UPDATE ROOM SET STATE="+"\""+ statex+"\""+" WHERE ROOM_NUM="+roomnum;
+       console.log(sql);
        //ENUM('AVAILABLE', 'CANNOT_USE','CHECKOUT_DAY','STAYING')
         connection.query(sql, function (error, result, fields) {
             if (error) {
