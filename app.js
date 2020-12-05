@@ -11,7 +11,9 @@ var url = require('url');
 
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login')
+var loginRouter = require('./routes/login');
+var myinfoRouter = require('./routes/myinfo');
+var myeditRouter = require('./routes/myedit');
 var usersRouter = require('./routes/users');
 var reservRouter = require('./routes/reservation');
 var registerRouter = require('./routes/register');
@@ -22,7 +24,10 @@ var faqRouter = require('./routes/faq');
 var reviewRouter = require('./routes/review');
 var room_stateRouter = require('./routes/room_state');
 var popupRouter = require('./routes/popup');
-
+var staffRouter = require('./routes/staff');
+var bookingRouter = require('./routes/booking');
+var staffRouter = require('./routes/staff');
+var custListRouter = require('./routes/custList');
 
 var app = express();
 
@@ -41,6 +46,8 @@ app.use('/logout', logoutRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
+app.use('/myinfo',myinfoRouter);
+app.use('/myedit',myeditRouter);
 app.use('/reservation',reservRouter);
 app.use('/register',registerRouter);
 app.use('/complain',complainRouter);
@@ -49,6 +56,16 @@ app.use('/faq', faqRouter);
 app.use('/review',reviewRouter);
 app.use('/room_state', room_stateRouter);
 app.use('/popup', popupRouter);
+app.use('/staff', staffRouter);
+app.use('/booking',bookingRouter);
+app.use('/staff',staffRouter);
+app.use('/custList',custListRouter);
+
+
+app.get("https://script.google.com/macros/s/AKfycbxj63IPDhClUPJzBPqiAuiVmARgMF1dtSir2xo-qg/exec",function(req,res){
+  backURL=req.header('Referer') || '/';
+  res.redirect(backURL);
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -57,6 +74,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+
+
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -65,5 +85,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
