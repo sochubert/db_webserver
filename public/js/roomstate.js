@@ -15,14 +15,22 @@ $(function () {
     var socket = io();
 
     socket.on("changeroomstate", function (data){
-        if(data.statex == "AVAILABLE")
-            $("#"+data.roomnumx+"0000").attr("color","blue");
-        else if(data.statex == "CANNOT_USE")
-            $("#"+data.roomnumx+"0000").attr("color","red");
-        else if(data.statex == "CHECKOUT_DAY")
-            $("#"+data.roomnumx+"0000").attr("color","orange");
-        else if(data.statex == "STAYING")
-            $("#"+data.roomnumx+"0000").attr("color","green");
+        if(data.statex == "AVAILABLE") {
+            $("#" + data.roomnumx + "0000").attr("color", "black");
+            $("#" + data.roomnumx).attr("style","background-color:");
+        }
+        else if(data.statex == "CANNOT_USE") {
+            $("#" + data.roomnumx + "0000").attr("color", "white");
+            $("#"+data.roomnumx).attr("style","background-color:#ff9999");
+        }
+        else if(data.statex == "CHECKOUT_DAY") {
+            $("#" + data.roomnumx + "0000").attr("color", "white");
+            $("#"+data.roomnumx).attr("style","background-color:#f599ff");
+        }
+        else if(data.statex == "STAYING") {
+            $("#" + data.roomnumx + "0000").attr("color", "white");
+            $("#" + data.roomnumx).attr("style", "background-color:#00cccc");
+        }
     });
 
 });

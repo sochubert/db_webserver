@@ -66,14 +66,19 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                            <% console.log(room[(10-j)*12+i-1]);%>
+                            <% console.log(12*j+i-13);%>
                                 <button type="button" onclick="popupOpen(this.id)" class="button_size" id=<%=100*j+i%> style=
-                                <%if (room[(10-j)*12+i-1].STATE == "AVAILABLE") { %>"background-color:orange"<% }%>
-                            <%if (room[(10-j)*12+i-1].STATE == "CANNOT_USE") { %>"background-color:red"<% }%>
-                            <%if (room[(10-j)*12+i-1].STATE == "CHECKOUT_DAY") { %>"background-color:purple"<% }%>
-                            <%if (room[(10-j)*12+i-1].STATE == "STAYING") { %>"background-color:green"<% }%>
+                            <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"background-color:"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"background-color:#ff9999"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"background-color:#f599ff"<% }%>
+                            <%if (room[12*j+i-13].STATE == "STAYING") { %>"background-color:#00cccc"<% }%>
                                 >
-                            <font color="green" id=<%=(100*j+i)*10000%>>객실<br/><%=100*j+i%></font> </button>
+                            <font color=
+                                  <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"black"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"white"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"white"<% }%>
+                            <%if (room[12*j+i-13].STATE == "STAYING") { %>"white"<% }%>
+                                  id=<%=(100*j+i)*10000%>>객실<br/><%=100*j+i%></font> </button>
                         </td>
                         <% } %>
                     </tr>
@@ -191,12 +196,35 @@
     </script>
     <!-- //script for seat selection -->
 </section>
-<section>
-    <% if (reservation != null) {%>
-        <p>
-            예약자 정보: <%=reservation[0].ENG_FIRST_NAME +" "+reservation[0].ENG_LAST_NAME %> <br/>
-        </p>
-    <% } %>
+
+<section id="complain_list">
+    <div class="container">
+        <% if (reservation != null) { %>
+            <% for (var q of reservation)  { %>
+                <div class="row">
+                        <div class="col-sm-3" style="border-radius: 20px; padding: 3% 2%;">
+                            <div class="review-block-name"><a href="#"><strong>객실 번호 : <%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></a></div>
+                            <div class="review-block-room"><strong>직원 ID : <%=q.RESERVATION_ID%></strong></div>
+                            <div class="review-block-room"><strong>우선 순위 : <%=q.ROOM_TYPE%></strong></div>
+                            <div class="review-block-room"><strong>우선 순위 : <%=q.ROOM_NUM%></strong></div>
+                            <div class="rating-selected" style="margin-left: 30%;">
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="review-block-title"><p>타입 :</p></div>
+                                </div>
+                            </div>
+                            <div class="review-block-description"><%=q.DESCRIPTION%>adsfffffffffffffffffffffffffffffffffa</div>
+                            <div class="review-block-description text-right" style="font-size: 14px;"><p>발생 시간 : <%=q.CHECKIN_DATE%></p></div>
+                            <div class="review-block-description text-right" style="font-size: 14px;"><p>종료 시간 : <%=q.CHECKOUT_DATE%></p></div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+        <% } } %>
+    </div>
 </section>
 
 <section class="probootstrap-half">
