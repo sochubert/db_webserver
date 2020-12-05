@@ -58,6 +58,22 @@ io.on('connection', function (socket){
         })
         io.emit('updateComplain',data);
     });
+
+    socket.on('changeroomstate',function(data){
+       var roomnum=data.roomnumx;
+       var statex=data.statex;
+
+       var sql = "UPDATE ROOM SET STATE="+"\""+ statex+"\""+" WHERE ROOM_NUM="+roomnum;
+       console.log(sql);
+       //ENUM('AVAILABLE', 'CANNOT_USE','CHECKOUT_DAY','STAYING')
+        connection.query(sql, function (error, result, fields) {
+            if (error) {
+                console.log(error);
+            }
+        });
+        io.emit('changeroomstate',data);
+    });
+
 });
 
 

@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 
 // var connection = require('./routes/db');
 
@@ -19,6 +22,8 @@ var logoutRouter = require('./routes/logout');
 var helpRouter = require('./routes/help');
 var faqRouter = require('./routes/faq');
 var reviewRouter = require('./routes/review');
+var room_stateRouter = require('./routes/room_state');
+var popupRouter = require('./routes/popup');
 var staffRouter = require('./routes/staff');
 var bookingRouter = require('./routes/booking');
 var staffRouter = require('./routes/staff');
@@ -49,6 +54,8 @@ app.use('/complain',complainRouter);
 app.use('/help', helpRouter);
 app.use('/faq', faqRouter);
 app.use('/review',reviewRouter);
+app.use('/room_state', room_stateRouter);
+app.use('/popup', popupRouter);
 app.use('/staff', staffRouter);
 app.use('/booking',bookingRouter);
 app.use('/staff',staffRouter);
