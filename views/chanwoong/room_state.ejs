@@ -66,7 +66,14 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                                <button type="button" onclick="popupOpen(this.id)" class="button_size" id=<%=100*j+i%>><font color="green" id=<%=(100*j+i)*10000%>>객실<br/><%=100*j+i%></font> </button>
+                            <% console.log(room[(10-j)*12+i-1]);%>
+                                <button type="button" onclick="popupOpen(this.id)" class="button_size" id=<%=100*j+i%> style=
+                                <%if (room[(10-j)*12+i-1].STATE == "AVAILABLE") { %>"background-color:orange"<% }%>
+                            <%if (room[(10-j)*12+i-1].STATE == "CANNOT_USE") { %>"background-color:red"<% }%>
+                            <%if (room[(10-j)*12+i-1].STATE == "CHECKOUT_DAY") { %>"background-color:purple"<% }%>
+                            <%if (room[(10-j)*12+i-1].STATE == "STAYING") { %>"background-color:green"<% }%>
+                                >
+                            <font color="green" id=<%=(100*j+i)*10000%>>객실<br/><%=100*j+i%></font> </button>
                         </td>
                         <% } %>
                     </tr>
@@ -185,10 +192,11 @@
     <!-- //script for seat selection -->
 </section>
 <section>
+    <% if (reservation != null) {%>
         <p>
             예약자 정보: <%=reservation[0].ENG_FIRST_NAME +" "+reservation[0].ENG_LAST_NAME %> <br/>
-
         </p>
+    <% } %>
 </section>
 
 <section class="probootstrap-half">
