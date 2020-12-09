@@ -40,12 +40,15 @@
                         <li <% if (title == 'Myinfo'){ %> class="active" <% }%>><a href="/myinfo">Myinfo</a></li>
                     <%}%>
                     <li <% if (title == 'Logout'){ %> class="active" <% }%>><a href="/logout">logout</a></li>
-
+                    <%if(cust_info[2] == true){%>
+                        <li <% if (title == 'Complain'){ %> class="active" <% }%>><a href="/complain">Complain</a></li>
+                    <%}%>
+                    <!--가운데 그림-->
                     <li class="hidden-xs probootstrap-logo-center"><a href="/"><img src="img/logo_md.png" class="hires" width="181" height="50" alt="Free Bootstrap Template by uicookies.com"></a></li>
+
                     <%if(cust_info[2] == false) {%> <!--고객일경우-->
                         <li <% if (title == 'Reservation'){ %> class="active" <% }%>><a href="/reservation">Reservation</a></li>
                     <%}else {%>
-                        <li <% if (title == 'Complain'){ %> class="active" <% }%>><a href="/complain">Complain</a></li>
                         <li <% if (title == 'Room_state'){ %> class="active" <% }%>><a href="/room_state">Room state</a></li>
                         <li <% if (title == "Staff"){ %>class="active"<%}%>><a href="/staff">Staff</a> </li>
                         <li <% if (title == "Cust Info"){ %>class="active" <%}%>><a href="/custList">Customer</a></li>
