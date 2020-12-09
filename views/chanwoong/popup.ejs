@@ -20,7 +20,7 @@
     <div class="container">
             <div class="col-md-10">
                 <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 2.6rem;">Information of room (<%= roominfo.ROOM_NUM%>)</h1>
-                <form id=gotohell class="probootstrap-form">
+                <form id=popform class="probootstrap-form">
                     <input type="hidden" id="roomnumxyz" value=<%=roominfo.ROOM_NUM%>>
                     <div class="row">
                         <div class="col-md-2">
@@ -48,6 +48,7 @@
                                 <label for="priority">CheckIn</label>
                                 <div class="form-field">
                                     <p id="priorityx" name="priorityx" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                        <% if (cust_info != null) { %><%=cust_info[0].CHECKIN_DATE.toString().substr(0,15)%> <% } %>
                                     </p>
                                 </div>
                             </div>
@@ -57,19 +58,32 @@
                                 <label for="priority">CheckOut</label>
                                 <div class="form-field">
                                     <p id="priorityx" name="priorityx" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                        <% if (cust_info != null) { %><%=cust_info[0].CHECKOUT_DATE.toString().substr(0,15)%> <% } %>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="priority">Res ID</label>
+                                <div class="form-field">
+                                    <% if (cust_info != null) { %><%var x = cust_info[0].RESERVATION_ID%> <% } else { %><%var x = ""%> <% } %>
+                                    <input type="number" id="rs_id" name="rs_id" class="form-control" value=<%=x%> style="border:0px; border-bottom: #903479 2px solid;">
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
                             <div class="form-group">
                                 <label for="priority">Complain</label>
                                 <div class="form-field">
-                                    <% for( var x of complainlist ){%>
-                                        <p><%= x.DESCRIPTION+"\t" +x.TYPE+"\t"+x.START_TIME+"\t"+x.FIN_TIME+"\t"+x.PRIORITY+"\n"  %></p>
-                                    <%}%>
+                                    <textarea readonly rows="4" cols="50" style="border: none; border-bottom: #903479 2px solid; background-color: #fff;">
+                                        <% for( var x of complainlist ){%>
+                                            <p><%= x.DESCRIPTION+"\t" +x.TYPE+"\t"+x.START_TIME+"\t"+x.FIN_TIME+"\t"+x.PRIORITY+"\n"  %></p>
+                                        <%}%>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -93,12 +107,16 @@
 <script src="js/custom.js"></script>
 <script src = "/socket.io/socket.io.js"></script>
 <script>
-    $("#gotohell").submit(function(e) {
+    $("#popform").submit(function(e) {
         e.preventDefault();
         var socket_u = io();
         var $x = $("#roomnumxyz").val();
         var $y =$("#yes_come_on").val();
+        var $rs_id;
+        if($("#rs_id").val().length == 0){$rs_id = null; }
+        else{$rs_id = $("#rs_id").val().toString();}
         socket_u.emit("changeroomstate",{
+            rs_id:$rs_id,
             roomnumx:$x.toString(),
             statex:$y.toString(),
         });

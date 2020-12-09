@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/stylesheets/css2/custom.css">
     <link rel="stylesheet" href="/stylesheets/css2/reservation_custom.css">
     <link rel="stylesheet" href="/stylesheets/css2/roomstate/roomstate.css">
+    <link rel="stylesheet" href="/stylesheets/css2/review_css/review.css">
     <!--[if lt IE 9]>
     <script src="js/vendor/html5shiv.min.js"></script>
     <script src="js/vendor/respond.min.js"></script>
@@ -84,8 +85,7 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                            <% console.log(12*j+i-13);%>
-                                <button type="button" onclick="popupOpen(this.id)" class="button_size" id=<%=100*j+i%> style=
+                                <button type="button" onclick="popupOpen(this.id,<%=room[12*j+i-13].RES_ID%>)" class="button_size" id=<%=100*j+i%> style=
                             <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"background-color:"<% } %>
                             <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"background-color:#ff9999"<% } %>
                             <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"background-color:#f599ff"<% }%>
@@ -216,34 +216,66 @@
 </section>
 
 <section id="complain_list">
-    <div class="container">
+    <div class="container2">
+        <h1 class="probootstrap-heading probootstrap-animate" style="color: black; font-size: 2.6rem">Today's Checkin</h1>
+        <hr style="border: solid 0.5px">
         <% if (reservation != null) { %>
             <% for (var q of reservation)  { %>
-                <div class="row">
-                        <div class="col-sm-3" style="border-radius: 20px; padding: 3% 2%;">
-                            <div class="review-block-name"><a href="#"><strong>객실 번호 : <%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></a></div>
-                            <div class="review-block-room"><strong>직원 ID : <%=q.RESERVATION_ID%></strong></div>
-                            <div class="review-block-room"><strong>우선 순위 : <%=q.ROOM_TYPE%></strong></div>
-                            <div class="review-block-room"><strong>우선 순위 : <%=q.ROOM_NUM%></strong></div>
+            <div class="row">
+                <div class="probootstrap-gutter40">
+                    <div class="row">
+                        <div class="col-sm-4 text-center" style="border-radius: 20px; padding: 1% 0 4% 0; line-height: 2rem;">
+                            <div class="review-block-name">객실 번호 : <strong style="color: #903479; font-size: 1.5rem"><%=q.ROOM_NUM%></strong></div>
+                            <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
+                            <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
+                            <div class="review-block-room">예약자 이름 : <strong><%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></div>
                             <div class="rating-selected" style="margin-left: 30%;">
                             </div>
                         </div>
-                        <div class="col-sm-9">
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="review-block-title"><p>타입 :</p></div>
-                                </div>
-                            </div>
-                            <div class="review-block-description"><%=q.DESCRIPTION%>adsfffffffffffffffffffffffffffffffffa</div>
-                            <div class="review-block-description text-right" style="font-size: 14px;"><p>발생 시간 : <%=q.CHECKIN_DATE%></p></div>
-                            <div class="review-block-description text-right" style="font-size: 14px;"><p>종료 시간 : <%=q.CHECKOUT_DATE%></p></div>
+                        <div class="col-sm-8" style="padding: 1% 0 4% 0">
+                            <%var z = q.CHECKIN_DATE.toString().substring(0,15)%>
+                            <%var y = q.CHECKOUT_DATE.toString().substring(0,15)%>
+                            <div class="review-block-title"><p>체크인 : <%=z%></p></div>
+                            <div class="review-block-title"><p>체크아웃 : <%=y%></p></div>
                         </div>
                     </div>
                 </div>
-                <hr/>
+            </div>
+            <hr/>
         <% } } %>
     </div>
 </section>
+<section id="complain_list2">
+    <div class="container2">
+        <h1 class="probootstrap-heading probootstrap-animate" style="color: black; font-size: 2.6rem">Today's CheckOut</h1>
+        <hr style="border: solid 0.5px">
+        <% if (checkoutroom != null) { %>
+            <% for (var q of checkoutroom)  { %>
+            <div class="row">
+                <div class="probootstrap-gutter40">
+                    <div class="row">
+                        <div class="col-sm-4 text-center" style="border-radius: 20px; padding: 1% 0 4% 0; line-height: 2rem;">
+                            <div class="review-block-name">객실 번호 : <strong style="color: #903479; font-size: 1.5rem"><%=q.ROOM_NUM%></strong></div>
+                            <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
+                            <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
+                            <div class="review-block-room">예약자 이름 : <strong><%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></div>
+                            <div class="rating-selected" style="margin-left: 30%;">
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="padding: 1% 0 4% 0">
+                            <%var z = q.CHECKIN_DATE.toString().substring(0,15)%>
+                            <%var y = q.CHECKOUT_DATE.toString().substring(0,15)%>
+                            <div class="review-block-title"><p>체크인 : <%=z%></p></div>
+                            <div class="review-block-title"><p>체크아웃 : <%=y%></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        <% } } %>
+    </div>
+</section>
+
 
 <section class="probootstrap-half">
     <div class="image" style="background-image: url(img/slider_2.jpg);"></div>
