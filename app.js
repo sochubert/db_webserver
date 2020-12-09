@@ -28,6 +28,7 @@ var staffRouter = require('./routes/staff');
 var bookingRouter = require('./routes/booking');
 var staffRouter = require('./routes/staff');
 var custListRouter = require('./routes/custList');
+var resCheckRouter = require('./routes/res_check')
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use('/staff', staffRouter);
 app.use('/booking',bookingRouter);
 app.use('/staff',staffRouter);
 app.use('/custList',custListRouter);
+app.use('/rescheck',resCheckRouter);
 
 
 app.get("https://script.google.com/macros/s/AKfycbxj63IPDhClUPJzBPqiAuiVmARgMF1dtSir2xo-qg/exec",function(req,res){
