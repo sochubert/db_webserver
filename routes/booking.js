@@ -123,6 +123,7 @@ router.post('/',function(req,res,next) {
                                 connection.query(sql_reservation,[null,rows.insertId,room_type,null,checkin_date,checkout_date,result1.insertId, Number(reserv_info[2]),Number(reserv_info[3]),Number(reserv_info[4]),Number(breakfast_count)],function(error,result2){
                                     if(error){
                                         console.log("reservation query problemm");
+                                        console.log(error);
                                     }else{
                                         connection.query(sql_detail_fee,[result2.insertId,room_price,extra_fee,extra_fee + room_price],function(error,result3){
                                             if(error){

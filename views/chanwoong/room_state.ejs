@@ -229,6 +229,7 @@
                             <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
                             <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
                             <div class="review-block-room">예약자 이름 : <strong><%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></div>
+                            <div class="review-block-room">전화 번호 : <strong><%=q.PHONE_NUM%></strong></div>
                             <div class="rating-selected" style="margin-left: 30%;">
                             </div>
                         </div>
@@ -251,6 +252,7 @@
         <hr style="border: solid 0.5px">
         <% if (checkoutroom != null) { %>
             <% for (var q of checkoutroom)  { %>
+                <% var name = q.ENG_FIRST_NAME +" "+ q.ENG_LAST_NAME%>
             <div class="row">
                 <div class="probootstrap-gutter40">
                     <div class="row">
@@ -258,7 +260,7 @@
                             <div class="review-block-name">객실 번호 : <strong style="color: #903479; font-size: 1.5rem"><%=q.ROOM_NUM%></strong></div>
                             <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
                             <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
-                            <div class="review-block-room">예약자 이름 : <strong><%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></div>
+                            <div class="review-block-room">예약자 이름 : <strong><%=name%></strong></div>
                             <div class="rating-selected" style="margin-left: 30%;">
                             </div>
                         </div>
