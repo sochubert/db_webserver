@@ -21,17 +21,11 @@ io.on('connection', function (socket){
         var sql = "INSERT INTO COMPLAIN(ROOM_NUM,DESCRIPTION,EMPLOYEE_ID,TYPE,START_TIME,FIN_TIME,PRIORITY) VALUES(?, ?, ?, ?, ?,?,?)";
         connection.query(sql,[roomnum,description,employee_id,TYPE,start_time,fin_time,priorityx], function (error, result, fields) {
             if (error) {
-                console.log(error);
             } else{
-                console.log(result);
                 connection.query("select * from EMPLOYEE natural join PERSON where EMPLOYEE_ID = ?",[employee_id],function(error,rows){
                     if(error){
-                        console.log(error);
                     } else{
                         var emp_name = rows[0].ENG_LAST_NAME + " " + rows[0].ENG_FIRST_NAME;
-                        console.log(emp_name);
-                        console.log(data.employee_id);
-                        console.log(data.cust_id);
                         io.emit('addcomplain',{
                             data:data,
                             complain_id:result.insertId,
@@ -53,7 +47,6 @@ io.on('connection', function (socket){
             if(error){
                 console.log(error);
             } else{
-                console.log(result);
             }
         })
         io.emit('updateComplain',data);
@@ -70,7 +63,7 @@ io.on('connection', function (socket){
            });
        }
        else if(rs_id != null) {
-           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + rs_id + "\"" + " WHERE ROOM_NUM=" + roomnum;
+           var sql = "UPDATE ROOM SET RES_ID=" + rs_id + " WHERE ROOM_NUM=" + roomnum;
            connection.query(sql, function (error, result, fields) {
            });
        }

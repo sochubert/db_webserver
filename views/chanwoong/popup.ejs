@@ -110,9 +110,9 @@
         var socket_u = io();
         var $x = $("#roomnumxyz").val();
         var $y =$("#yes_come_on").val();
-        var $rs_id = null;
+        var $rs_id;
         if($("#rs_id").val().length == 0){$rs_id = null; }
-        else{$rs_id = $rs_id.toString();}
+        else{$rs_id = $("#rs_id").val().toString();}
         socket_u.emit("changeroomstate",{
             rs_id:$rs_id,
             roomnumx:$x.toString(),

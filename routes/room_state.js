@@ -4,15 +4,15 @@ var connection = require('./db');
 
 router.get('/', function(req, res, next) {
     var sql = "SELECT * FROM ROOM";
-    var sqlcouttest = "SELECT count(*) AS OK FROM ROOM LEFT JOIN RESERVATION ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE CHECKOUT_DATE = ?";
-    var sqlcout = "SELECT * AS OK FROM ROOM LEFT JOIN RESERVATION ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE CHECKOUT_DATE = ?";
     var date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth()+1;
     let day = date.getDate();
     var checkoutroom;
     var resres;
-    var today = year + "-" + month + "-" + day + " 00:00:00"
+    var today = year + "-" + month + "-" + day + " 00:00:00";
+    var sqlcouttest = "SELECT count(*) AS OK FROM RESERVATION LEFT JOIN ROOM ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE CHECKOUT_DATE = ?";
+    var sqlcout = "SELECT * FROM RESERVATION LEFT JOIN ROOM ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE CHECKOUT_DATE = ?";
     sqltest = "SELECT count(*) AS X FROM RESERVATION R LEFT JOIN CUSTOMER C ON R.CUSTOMER_ID = C.CUSTOMER_ID LEFT JOIN PERSON P ON C.PERSON_ID=P.PERSON_ID WHERE CHECKIN_DATE = ?";
     connection.query(sqltest,[today],function (error, result3, fields) {
         connection.query(sql, function (error, result, fields) {

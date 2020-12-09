@@ -19,6 +19,7 @@ $(function () {
     var socket = io();
 
     socket.on("changeroomstate", function (data){
+        $("#" + data.roomnumx).attr("onclick","popupOpen("+data.roomnumx+","+data.rs_id.toString()+")");
         if(data.statex == "AVAILABLE") {
             $("#" + data.roomnumx + "0000").attr("color", "black");
             $("#" + data.roomnumx).attr("style","background-color:");
@@ -35,6 +36,7 @@ $(function () {
             $("#" + data.roomnumx + "0000").attr("color", "white");
             $("#" + data.roomnumx).attr("style", "background-color:#00cccc");
         }
+        $("#" + data.roomnumx).attr("style", "background-color:#00cccc");
     });
 
 });
