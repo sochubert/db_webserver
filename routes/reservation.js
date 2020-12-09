@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if(!req.cookies['customer_id']){
     res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:null, avail_roomtype:available_roomtypes,reservation_info:input_info});
   } else {
-    res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:req.cookies['customer_id'], avail_roomtype:available_roomtypes,reservation_info:input_info});
+    res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:[req.cookies.customer_id, req.cookies.customer_name, false], avail_roomtype:available_roomtypes,reservation_info:input_info});
   }
     
 });
