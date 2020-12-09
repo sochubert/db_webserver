@@ -67,6 +67,7 @@
                             <div class="form-group">
                                 <label for="priority">Room ID</label>
                                 <div class="form-field">
+                                    <% %>
                                     <input type="number" id="rs_id" name="rs_id" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
                                     </input>
                                 </div>
@@ -110,8 +111,8 @@
         var $x = $("#roomnumxyz").val();
         var $y =$("#yes_come_on").val();
         var $rs_id = null;
-        // if($("#rs_id").val().length == 0){$rs_id = null; }
-        // else{$rs_id = $rs_id.toString();}
+        if($("#rs_id").val().length == 0){$rs_id = null; }
+        else{$rs_id = $rs_id.toString();}
         socket_u.emit("changeroomstate",{
             rs_id:$rs_id,
             roomnumx:$x.toString(),

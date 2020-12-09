@@ -63,13 +63,14 @@ io.on('connection', function (socket){
        var roomnum=data.roomnumx;
        var statex=data.statex;
        var rs_id = data.rs_id;
-       if(rs_id != null) {
-           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + rs_id + "\"" + " WHERE ROOM_NUM=" + roomnum;
+
+       if(statex == "AVAILABLE" || statex == "CANNOT_USE"){
+           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + "NULL" + "\"" + " WHERE ROOM_NUM=" + roomnum;
            connection.query(sql, function (error, result, fields) {
            });
        }
-       if(statex == "AVAILABLE" || statex == "CANNOT_USE"){
-           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + "NULL" + "\"" + " WHERE ROOM_NUM=" + roomnum;
+       else if(rs_id != null) {
+           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + rs_id + "\"" + " WHERE ROOM_NUM=" + roomnum;
            connection.query(sql, function (error, result, fields) {
            });
        }
