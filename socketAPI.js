@@ -62,9 +62,19 @@ io.on('connection', function (socket){
     socket.on('changeroomstate',function(data){
        var roomnum=data.roomnumx;
        var statex=data.statex;
+       var rs_id = data.rs_id;
+       if(rs_id != null) {
+           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + rs_id + "\"" + " WHERE ROOM_NUM=" + roomnum;
+           connection.query(sql, function (error, result, fields) {
+           });
+       }
+       if(statex == "AVAILABLE" || statex == "CANNOT_USE"){
+           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + "NULL" + "\"" + " WHERE ROOM_NUM=" + roomnum;
+           connection.query(sql, function (error, result, fields) {
+           });
+       }
 
        var sql = "UPDATE ROOM SET STATE="+"\""+ statex+"\""+" WHERE ROOM_NUM="+roomnum;
-       console.log(sql);
        //ENUM('AVAILABLE', 'CANNOT_USE','CHECKOUT_DAY','STAYING')
         connection.query(sql, function (error, result, fields) {
             if (error) {
