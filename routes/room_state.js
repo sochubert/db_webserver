@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     var resres;
     var today = year + "-" + month + "-" + day + " 00:00:00";
     var sqlcouttest = "SELECT count(*) AS OK FROM RESERVATION LEFT JOIN ROOM ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE ROOM.ROOM_NUM IS NOT NULL AND CHECKOUT_DATE = ?";
-    var sqlcout = "SELECT * FROM RESERVATION LEFT JOIN ROOM ON ROOM.RES_ID = RESERVATION.RESERVATION_ID WHERE ROOM.ROOM_NUM IS NOT NULL AND CHECKOUT_DATE = ?";
+    var sqlcout = "SELECT * FROM RESERVATION LEFT JOIN ROOM ON ROOM.RES_ID = RESERVATION.RESERVATION_ID natural join CUSTOMER natural join PERSON WHERE ROOM.ROOM_NUM IS NOT NULL AND CHECKOUT_DATE = ?";
     var sqltest = "SELECT count(*) AS X FROM RESERVATION R LEFT JOIN CUSTOMER C ON R.CUSTOMER_ID = C.CUSTOMER_ID LEFT JOIN PERSON P ON C.PERSON_ID=P.PERSON_ID WHERE CHECKIN_DATE = ?";
     connection.query(sqltest,[today],function (error, result3, fields) {
         connection.query(sql, function (error, result, fields) {
