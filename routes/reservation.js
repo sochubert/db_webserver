@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if(!req.cookies['customer_id']){
     res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:null, avail_roomtype:available_roomtypes,reservation_info:input_info});
   } else {
-    res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:req.cookies['customer_id'], avail_roomtype:available_roomtypes,reservation_info:input_info});
+    res.render('../views/chanwoong/reservation', { title: 'Reservation', cust_info:[req.cookies.customer_id, req.cookies.customer_name, false], avail_roomtype:available_roomtypes,reservation_info:input_info});
   }
     
 });
@@ -31,29 +31,35 @@ router.post('/', function (req, res) {
     
     var a="",b="",c="";
     var step =1;
-    for(var i=0;i<date_arrival.length;i++){
-      if(date_arrival[i] != '/'){
-        if(step == 1) a += date_arrival[i];
-        else if(step ==2) b+= date_arrival[i];
-        else if(step ==3) c+= date_arrival[i];
-      }
-      else{
-        step++;
-      }
-    }var date_arr=c+"-"+b+"-"+a+" 00:00:00";
-    a="";b="";c="";step =1;
-    for(var i=0;i<date_departure.length;i++){
-      if(date_departure[i] != '/'){
-        if(step == 1) a += date_departure[i];
-        else if(step ==2) b+= date_departure[i];
-        else if(step ==3) c+= date_departure[i];
-      }
-      else{
-        step++;
-      }
-    }var date_dpa=c+"-"+b+"-"+a+" 00:00:00";
-  
+    if(input_info == null){
+      for(var i=0;i<date_arrival.length;i++){
+        if(date_arrival[i] != '/'){
+          if(step == 1) a += date_arrival[i];
+          else if(step ==2) b+= date_arrival[i];
+          else if(step ==3) c+= date_arrival[i];
+        }
+        else{
+          step++;
+        }
+      }var date_arr=c+"-"+b+"-"+a+" 00:00:00";
+      a="";b="";c="";step =1;
+      for(var i=0;i<date_departure.length;i++){
+        if(date_departure[i] != '/'){
+          if(step == 1) a += date_departure[i];
+          else if(step ==2) b+= date_departure[i];
+          else if(step ==3) c+= date_departure[i];
+        }
+        else{
+          step++;
+        }
+      }var date_dpa=c+"-"+b+"-"+a+" 00:00:00";
+    }else{
+      var date_arr = date_arrival;
+      var date_dpa = date_departure;
+    }
+    
     var avail_types;
+    if(input_info!= null) input_info = null;
     input_info = {"ROOMTYPE" : room,"DATE_ARR" : date_arr,"DATE_DPAR" : date_dpa,"N_A" : adult_num,"N_C" : child_num,"N_B" : baby_num};
   
     var sql1 = 'select * from ROOM_TYPE';
