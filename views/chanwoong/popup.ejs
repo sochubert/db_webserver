@@ -48,6 +48,7 @@
                                 <label for="priority">CheckIn</label>
                                 <div class="form-field">
                                     <p id="priorityx" name="priorityx" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                        <% if (cust_info != null) { %><%=cust_info[0].CHECKIN_DATE.toString().substr(0,15)%> <% } %>
                                     </p>
                                 </div>
                             </div>
@@ -57,6 +58,7 @@
                                 <label for="priority">CheckOut</label>
                                 <div class="form-field">
                                     <p id="priorityx" name="priorityx" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                        <% if (cust_info != null) { %><%=cust_info[0].CHECKOUT_DATE.toString().substr(0,15)%> <% } %>
                                     </p>
                                 </div>
                             </div>
@@ -65,10 +67,10 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="priority">Room ID</label>
+                                <label for="priority">Res ID</label>
                                 <div class="form-field">
-                                    <% %>
-                                    <input type="number" id="rs_id" name="rs_id" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                    <% if (cust_info != null) { %><%var x = cust_info[0].RESERVATION_ID%> <% } else { %><%var x = ""%> <% } %>
+                                    <input type="number" id="rs_id" name="rs_id" class="form-control" value=<%=x%> style="border:0px; border-bottom: #903479 2px solid;">
                                     </input>
                                 </div>
                             </div>
