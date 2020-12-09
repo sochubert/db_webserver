@@ -63,13 +63,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="priority">Room ID</label>
+                                <div class="form-field">
+                                    <input type="number" id="rs_id" name="rs_id" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
                             <div class="form-group">
                                 <label for="priority">Complain</label>
                                 <div class="form-field">
-                                    <% for( var x of complainlist ){%>
-                                        <p><%= x.DESCRIPTION+"\t" +x.TYPE+"\t"+x.START_TIME+"\t"+x.FIN_TIME+"\t"+x.PRIORITY+"\n"  %></p>
-                                    <%}%>
+                                    <textarea readonly rows="4" cols="50" style="border: none; border-bottom: #903479 2px solid; background-color: #fff;">
+                                        <% for( var x of complainlist ){%>
+                                            <p><%= x.DESCRIPTION+"\t" +x.TYPE+"\t"+x.START_TIME+"\t"+x.FIN_TIME+"\t"+x.PRIORITY+"\n"  %></p>
+                                        <%}%>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
