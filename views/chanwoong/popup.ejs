@@ -48,7 +48,8 @@
                                 <label for="priority">CheckIn</label>
                                 <div class="form-field">
                                     <p id="priorityx" name="priorityx" class="form-control" style="border:0px; border-bottom: #903479 2px solid;">
-                                    </p>
+                                        <% console.log(cust_info);%>
+                                    <% if (cust_info != null) { %><%=cust_info[0].RESERVATION_ID%> <% } %></p>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
         var $y =$("#yes_come_on").val();
         var $rs_id = null;
         if($("#rs_id").val().length == 0){$rs_id = null; }
-        else{$rs_id = $rs_id.toString();}
+        else{$rs_id = $("#rs_id").val().toString();}
         socket_u.emit("changeroomstate",{
             rs_id:$rs_id,
             roomnumx:$x.toString(),

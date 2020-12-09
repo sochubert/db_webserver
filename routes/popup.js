@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     var _url = req.url;
     var queryData = url.parse(_url, true).query;//queryData.num;
     var num = queryData.num;
-    var rs_id = queryData.re_id;
+    var rs_id = queryData.rs_id;
     var custinfo = null;
     connection.query("SELECT * FROM ROOM WHERE ROOM_NUM = "+num.toString(),function(error,result) {
         var roominfo = result[0];

@@ -70,7 +70,7 @@ io.on('connection', function (socket){
            });
        }
        else if(rs_id != null) {
-           var sql = "UPDATE ROOM SET RES_ID=" + "\"" + rs_id + "\"" + " WHERE ROOM_NUM=" + roomnum;
+           var sql = "UPDATE ROOM SET RES_ID=" + rs_id  + " WHERE ROOM_NUM=" + roomnum;
            connection.query(sql, function (error, result, fields) {
            });
        }
