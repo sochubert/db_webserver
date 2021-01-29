@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm install && node ./bin/www",
+    "start": "node ./bin/www",
     "test": "nodemon ./bin/www -e ejs,js,css,html,jpg,png,scss"
   },
   "dependencies": {
