@@ -85,7 +85,7 @@
                         <td>Floor <%=j%></td>
                         <% for(var i = 1; i < 13; i++){ %>
                         <td class="border-right">
-                                <button type="button" onclick="popupOpen(this.id,<%=room[12*j+i-13].RES_ID%>)" class="button_size" id=<%=100*j+i%> style=
+                                <button type="button" onclick="popupOpen(this.id,<%= room[12*j+i-13].RESERVATION_ID%>)" class="button_size" id=<%=100*j+i%> style=
                             <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"background-color:"<% } %>
                             <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"background-color:#ff9999"<% } %>
                             <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"background-color:#f599ff"<% }%>
