@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
             connection.query("SELECT * FROM RESERVATION R LEFT JOIN CUSTOMER C ON R.CUSTOMER_ID = C.CUSTOMER_ID LEFT JOIN PERSON P ON P.PERSON_ID=C.PERSON_ID WHERE R.RESERVATION_ID = "+rs_id,function(error,result3) {
                 custinfo = result3;
                 if(rs_id == "null"){custinfo = null;}
-                res.render('../views/chanwoong/popup', {
+                res.render('popup', {
                     title: 'Popup',
                     cust_info: custinfo,
                     roominfo: roominfo,

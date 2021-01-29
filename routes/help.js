@@ -3,9 +3,9 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     if(!req.cookies['customer_id']){
-        res.render('../views/chanwoong/help', { title: 'Help', cust_info:null});
+        res.render('help', { title: 'Help', cust_info:null});
       } else {
-        res.render('../views/chanwoong/help', { title: 'Help', cust_info:[req.cookies.customer_id, req.cookies.customer_name, false]});
+        res.render('help', { title: 'Help', cust_info:[req.cookies.customer_id, req.cookies.customer_name, false]});
       }
 });
 

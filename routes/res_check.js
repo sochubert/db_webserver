@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
                 console.log(error);
             }
             console.log(result);
-            res.render('chanwoong/res_check', {
+            res.render('res_check', {
                 title: 'Reservation_Check',
                 cust_info: [req.cookies.customer_id, req.cookies.customer_name, x],
                 res_check:result,
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
         });
     }
     else if(x == null){//비회원
-        res.render('chanwoong/res_check', {
+        res.render('res_check', {
             title: 'Reservation_Check',
             cust_info: null,
             res_check:null,
@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
     sql = "SELECT count(*) AS Y FROM RESERVATION R LEFT JOIN CUSTOMER C ON R.CUSTOMER_ID = C.CUSTOMER_ID LEFT JOIN PERSON P ON P.PERSON_ID = C.PERSON_ID WHERE P.PHONE_NUM = " + "\""+phone.toString()+ "\"";
     connection.query(sql, function (error, test) {
         if(test[0].Y == 0){
-            res.render('chanwoong/res_check', {
+            res.render('res_check', {
                 title: 'Reservation_Check',
                 cust_info: null,
                 res_check: null,
@@ -49,7 +49,7 @@ router.post('/', function(req, res, next) {
         else {
             sql = "SELECT * FROM RESERVATION R LEFT JOIN CUSTOMER C ON R.CUSTOMER_ID = C.CUSTOMER_ID LEFT JOIN PERSON P ON P.PERSON_ID = C.PERSON_ID WHERE P.PHONE_NUM = " + "\"" + phone.toString() + "\"";
             connection.query(sql, function (error, result) {
-                res.render('chanwoong/res_check', {
+                res.render('res_check', {
                     title: 'Reservation_Check',
                     cust_info: null,
                     res_check: result,

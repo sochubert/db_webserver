@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
             var room = JSON.parse(JSON.stringify(results[0]));
             if(!req.cookies['customer_id']){
-                res.render('../views/chanwoong/booking', { title: 'Booking' , cust_info:null, reserv_info:reserv_info, room_info: room});
+                res.render('booking', { title: 'Booking' , cust_info:null, reserv_info:reserv_info, room_info: room});
             } else {
                 var sql = 'select * from CUSTOMER natural join PERSON where customer_id = ?'
                 connection.query(sql,req.cookies['customer_id'],function(error, rows){
@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
                         console.log("쿼리문제");
                     } else{
                         var sqlres = JSON.parse(JSON.stringify(rows[0]));
-                        res.render('../views/chanwoong/booking', { title: 'Booking' , cust_info:sqlres, reserv_info:reserv_info, room_info:room});
+                        res.render('booking', { title: 'Booking' , cust_info:sqlres, reserv_info:reserv_info, room_info:room});
                     }
                 });
             }

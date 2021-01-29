@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
             console.log(error);
         }
         var ep_info = JSON.parse(JSON.stringify(result));
-        res.render('../views/chanwoong/staff', {
+        res.render('staff', {
             title: 'Staff' ,
             cust_info:[req.cookies.employee_id, req.cookies.employee_name, true],
             staff_list : ep_info

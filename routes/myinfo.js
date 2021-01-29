@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
             console.log(error);
         }
         var fucking = JSON.parse(JSON.stringify(result));
-        res.render('../views/chanwoong/myinfo', { title: 'Myinfo' , cust_info:[req.cookies.customer_id, req.cookies.customer_name, false],myinfo:fucking});
+        res.render('myinfo', { title: 'Myinfo' , cust_info:[req.cookies.customer_id, req.cookies.customer_name, false],myinfo:fucking});
     });
 });
 
