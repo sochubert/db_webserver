@@ -1,22 +1,22 @@
 var mysql      = require('mysql');
 
-// 재우꺼 디비 서버
-var db_config = {
-    host     : '110.13.222.97',
-    port     : '13333',
-    user     : 'son',
-    password : '1234',
-    database : 'son'
-};
+// // 재우꺼 디비 서버
+// var db_config = {
+//     host     : '110.13.222.97',
+//     port     : '13333',
+//     user     : 'son',
+//     password : '1234',
+//     database : 'son'
+// };
 
 // 해로쿠 디비 서버
-// var db_config = {
-//     host : "us-cdbr-east-02.cleardb.com",
-//     port : "3306",
-//     user: "b0d7db5a46255f",
-//     password: "e0ba2ce1",
-//     database : "heroku_a9f9515c41ce864"
-// };
+var db_config = {
+    host : "ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    port : "3306",
+    user: "c3osryefvv2cyob3",
+    password: "mfr00os4s44g840k",
+    database : "vfg9nkyqxpv4ak2b"
+};
 
 function handleDisconnect() {
     connection = mysql.createConnection(db_config); // Recreate the connection, since
