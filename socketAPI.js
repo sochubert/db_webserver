@@ -1,7 +1,7 @@
 var socketAPI = {};
 var socket_io = require('socket.io');
 var io = socket_io();
-var connection = require('../db_webserver/routes/db');
+var connection = require('routes/db');
 
 
 io.on('connection', function (socket){
