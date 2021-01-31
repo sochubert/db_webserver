@@ -1,7 +1,11 @@
 var socketAPI = {};
 var socket_io = require('socket.io');
 var io = socket_io();
+<<<<<<< HEAD
 var connection = require('./routes/db');
+=======
+var connection = require('routes/db');
+>>>>>>> 65da78fc21efeeeec5f13e02b50fc0a8bd467aa9
 
 
 io.on('connection', function (socket){
