@@ -1,4 +1,4 @@
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
 // // 재우꺼 디비 서버
 // var db_config = {
