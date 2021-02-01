@@ -9,8 +9,8 @@
 ### Dummy ID
 * Employee ID/PW : emp@emp/1234
 * Customer ID/PW : cust@gmail.com/1234
-<br>
-> If you want to login with the Employee ID you need to check the Employee Checkbox.
+
+>> If you want to login with the Employee ID you need to check the Employee Checkbox.
 
 [Visit our website](https://hotel-management-system569.herokuapp.com/)
 
