@@ -1,14 +1,5 @@
 var mysql = require('mysql');
 
-// // 재우꺼 디비 서버
-// var db_config = {
-//     host     : '110.13.222.97',
-//     port     : '13333',
-//     user     : 'son',
-//     password : '1234',
-//     database : 'son'
-// };
-
 // 해로쿠 디비 서버
 var db_config = {
     host : "ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
