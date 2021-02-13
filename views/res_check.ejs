@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Database - Hotel</title>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/css2/styles-merged.css">
+    <link rel="stylesheet" href="/stylesheets/css2/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/css2/custom.css">
+    <link rel="stylesheet" href="/stylesheets/css2/style.css">
+    <link rel="stylesheet" href="/stylesheets/css2/review_css/review.css">
+    <!--[if lt IE 9]>
+    <script src="js/vendor/html5shiv.min.js"></script>
+    <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<% include ./uppermenu_header.ejs %>
+
+<section class="probootstrap-slider flexslider probootstrap-inner">
+    <ul class="slides">
+        <li style="background-image: url(img/slider_1.jpg);" class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="probootstrap-slider-text text-center">
+                            <p><img src="img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
+                            <h1 class="probootstrap-heading probootstrap-animate">Welcome to our hotel</h1>
+                            <div class="probootstrap-animate probootstrap-sub-wrap">Please enter your email and password <p/> If you become a member of our hotel, you can receive various services and benefits</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<% if (res_check == null) { %>
+    <section id="search" style="margin: 6% 0">
+        <div class="container">
+            <h1 class="probootstrap-heading probootstrap-animate text-center" style="font-size: 2.6rem; font-weight: bold;">비회원 조회</h1>
+            <hr style="border: solid 0.5px">
+            <form method="post" action="/rescheck">
+                <div class="row">
+                    <div class="col-md-5" style="position: relative; left: 29%">
+                        <div class="form-group text-center">
+                            <h4 for="Room_num" style="margin-bottom: 2%;">검색을 위해 전화번호를 입력해주세요.</h4>
+                            <input type="text" class="form-control text-center" name="phone" style="padding: 2.5rem 0; border:0px; border-bottom: #903479 2px solid; font-size: 1.7rem" placeholder="010xxxxxxxx"></input>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="float: right; margin-top: 5%;">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-lg" value="검색" style="margin-top: 7%; border-radius: 10px; padding: 1rem 2rem">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+<% } %>
+
+<section>
+    <div class="container">
+        <% if (res_check != null) { %>
+            <h1 style="margin: 8% 0 3% 0;" class="probootstrap-heading probootstrap-animate" style="font-size: 2.6rem; font-weight: bold;">조회 결과</h1>
+            <h3>전화번호 : <%= res_check[0].PHONE_NUM %></h3>
+            <hr style="border: solid 0.5px;">
+        <% for (var q of res_check) { %>
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="review-block-date"><%= q.DATE %></div>
+                            <div class="review-block-name">룸타입 : <strong style="font-size: 1.3rem; color: #903479"><%= q.ROOM_TYPE %></strong></div>
+                            <div class="review-block-description">체크인 : <strong style="color: #903479"><%= q.CHECKIN_DATE.toString().substr(0,15) %></strong></div>
+                            <div class="review-block-description">체크아웃 : <strong style="color: #903479"><%= q.CHECKOUT_DATE.toString().substr(0,15) %></strong></div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="review-block-description">성인 : <%= q.ADULT_NUM %></div>
+                            <div class="review-block-description">아이 : <%= q.CHILD_NUM %></div>
+                            <div class="review-block-description">유아 : <%= q.BABY_NUM %></div>
+                            <div class="review-block-description">식권개수 : <%= q.COUNT %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        <% } }%>
+    </div>
+</section>
+
+<section class="probootstrap-half">
+    <div class="image" style="background-image: url(img/slider_2.jpg);"></div>
+    <div class="text">
+        <div class="probootstrap-animate fadeInUp probootstrap-animated">
+            <h2 class="mt0">Best 5 Star hotel</h2>
+            <p><img src="img/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                </div>
+            </div>
+            <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+    </div>
+</section>
+
+<% include ./footer.ejs %>
+
+<script src="js/scripts.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>

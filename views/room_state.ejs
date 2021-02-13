@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Database - Hotel</title>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/css2/styles-merged.css">
+    <link rel="stylesheet" href="/stylesheets/css2/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/css2/custom.css">
+    <link rel="stylesheet" href="/stylesheets/css2/reservation_custom.css">
+    <link rel="stylesheet" href="/stylesheets/css2/roomstate/roomstate.css">
+    <link rel="stylesheet" href="/stylesheets/css2/review_css/review.css">
+    <!--[if lt IE 9]>
+    <script src="js/vendor/html5shiv.min.js"></script>
+    <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<% include ./uppermenu_header.ejs %>
+
+<section class="probootstrap-slider flexslider probootstrap-inner">
+    <ul class="slides">
+        <li style="background-image: url(img/slider_1.jpg);" class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="probootstrap-slider-text text-center">
+                            <p><img src="img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
+                            <h1 class="probootstrap-heading probootstrap-animate">Check Room State</h1>
+                            <div class="probootstrap-animate probootstrap-sub-wrap">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+
+<section id="checkRoomState" style="padding: 4% 0;">
+    <div class="container">
+        <div class="w3ls-reg">
+<!--            <h1 class="probootstrap-heading probootstrap-animate text-center" style="color: black; letter-spacing: 1px; font-size: 2.6rem;">Room Information</h1>-->
+            <div style="padding: 2% 0 8%; position: relative; left: 20%;" class="text-center">
+                <div style="display: inline-block">
+                    <button type="button" class="button_size" style="padding: 2.4rem 0.2rem; background-color: #f5f5f5; margin: 0 2rem"><font color="black">객실</font> </button>
+                    <p class="room_state_explain">사용가능</p>
+                </div>
+                <div style="display: inline-block">
+                    <button type="button" class="button_size" style="padding: 2.4rem 0.2rem; background-color: #ff9999; margin: 0 2rem"><font color="white">객실</font> </button>
+                    <p class="room_state_explain">사용불가</p>
+                </div>
+                <div style="display: inline-block">
+                    <button type="button" class="button_size" style="padding: 2.4rem 0.2rem; background-color: #f599ff; margin: 0 2rem"><font color="white">객실</font> </button>
+                    <p class="room_state_explain">체크아웃 당일</p>
+                </div>
+                <div style="display: inline-block">
+                    <button type="button" class="button_size" style="padding: 2.4rem 0.2rem; background-color: #00cccc; margin: 0 2rem"><font color="white">객실</font> </button>
+                    <p class="room_state_explain">사용중</p>
+                </div>
+            </div>
+            <div class="seatStructure txt-center" style="overflow-x:auto;">
+                <table id="seatsBlock">
+                    <p id="notification"></p>
+                    <tr>
+                        <td></td>
+                        <td>1호</td>
+                        <td>2호</td>
+                        <td>3호</td>
+                        <td>4호</td>
+                        <td>5호</td>
+                        <td>6호</td>
+                        <td>7호</td>
+                        <td>8호</td>
+                        <td>9호</td>
+                        <td>10호</td>
+                        <td>11호</td>
+                        <td>12호</td>
+                    </tr>
+                    <% for(var j = 10;j > 0;j--) { %>
+                    <tr>
+                        <td>Floor <%=j%></td>
+                        <% for(var i = 1; i < 13; i++){ %>
+                        <td class="border-right">
+                                <button type="button" onclick="popupOpen(this.id,<%= room[12*j+i-13].RES_ID%>)" class="button_size" id=<%=100*j+i%> style=
+                            <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"background-color:"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"background-color:#ff9999"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"background-color:#f599ff"<% }%>
+                            <%if (room[12*j+i-13].STATE == "STAYING") { %>"background-color:#00cccc"<% }%>
+                                >
+                            <font color=
+                                  <% if (room[12*j+i-13].STATE == "AVAILABLE") { %>"black"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CANNOT_USE") { %>"white"<% } %>
+                            <%if (room[12*j+i-13].STATE == "CHECKOUT_DAY") { %>"white"<% }%>
+                            <%if (room[12*j+i-13].STATE == "STAYING") { %>"white"<% }%>
+                                  id=<%=(100*j+i)*10000%>>객실<br/><%=100*j+i%></font> </button>
+                        </td>
+                        <% } %>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+            <!-- //seat layout -->
+            <!-- details after booking displayed here -->
+<!--            <div class="displayerBoxes txt-center" style="overflow-x:auto;">-->
+<!--                <table class="Displaytable w3ls-table" width="100%">-->
+<!--                    <tr>-->
+<!--                        <th>Name</th>-->
+<!--                        <th>Number of Seats</th>-->
+<!--                        <th>Seats</th>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>-->
+<!--                            <textarea id="nameDisplay"></textarea>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <textarea id="NumberDisplay"></textarea>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <textarea id="seatsDisplay"></textarea>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+            <!-- //details after booking displayed here -->
+        </div>
+    </div>
+<!--    <div class="copy-wthree">-->
+<!--        <p>© 2018 Movie Seat Selection . All Rights Reserved | Design by-->
+<!--            <a href="http://w3layouts.com/" target="_blank">W3layouts</a>-->
+<!--        </p>-->
+<!--    </div>-->
+    <!-- js -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- script for seat selection -->
+    <script>
+        function onLoaderFunc() {
+            $(".seatStructure *").prop("disabled", true);
+            $(".displayerBoxes *").prop("disabled", true);
+        }
+
+        function takeData() {
+            if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
+                alert("Please Enter your Name and Number of Seats");
+            } else {
+                $(".inputForm *").prop("disabled", true);
+                $(".seatStructure *").prop("disabled", false);
+                document.getElementById("notification").innerHTML =
+                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
+            }
+        }
+
+
+        function updateTextArea() {
+
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(".seatStructure *").prop("disabled", true);
+
+                var allNameVals = [];
+                var allNumberVals = [];
+                var allSeatsVals = [];
+
+                //Storing in Array
+                allNameVals.push($("#Username").val());
+                allNumberVals.push($("#Numseats").val());
+                $('#seatsBlock :checked').each(function () {
+                    allSeatsVals.push($(this).val());
+                });
+
+                //Displaying
+                $('#nameDisplay').val(allNameVals);
+                $('#NumberDisplay').val(allNumberVals);
+                $('#seatsDisplay').val(allSeatsVals);
+            } else {
+                alert("Please select " + ($("#Numseats").val()) + " seats")
+            }
+        }
+
+
+        function myFunction() {
+            alert($("input:checked").length);
+        }
+
+        /*
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        */
+
+
+        $(":checkbox").click(function () {
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(":checkbox").prop('disabled', true);
+                $(':checked').prop('disabled', false);
+            } else {
+                $(":checkbox").prop('disabled', false);
+            }
+        });
+    </script>
+    <!-- //script for seat selection -->
+</section>
+
+<section id="complain_list">
+    <div class="container2">
+        <h1 class="probootstrap-heading probootstrap-animate" style="color: black; font-size: 2.6rem">Today's Checkin</h1>
+        <hr style="border: solid 0.5px">
+        <% if (reservation != null) { %>
+            <% for (var q of reservation)  { %>
+            <div class="row">
+                <div class="probootstrap-gutter40">
+                    <div class="row">
+                        <div class="col-sm-4 text-center" style="border-radius: 20px; padding: 1% 0 4% 0; line-height: 2rem;">
+                            <div class="review-block-name">객실 번호 : <strong style="color: #903479; font-size: 1.5rem"><%=q.ROOM_NUM%></strong></div>
+                            <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
+                            <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
+                            <div class="review-block-room">예약자 이름 : <strong><%=q.ENG_FIRST_NAME + q.ENG_LAST_NAME%></strong></div>
+                            <div class="review-block-room">전화 번호 : <strong><%=q.PHONE_NUM%></strong></div>
+                            <div class="rating-selected" style="margin-left: 30%;">
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="padding: 1% 0 4% 0">
+                            <%var z = q.CHECKIN_DATE.toString().substring(0,15)%>
+                            <%var y = q.CHECKOUT_DATE.toString().substring(0,15)%>
+                            <div class="review-block-title"><p>체크인 : <%=z%></p></div>
+                            <div class="review-block-title"><p>체크아웃 : <%=y%></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        <% } } %>
+    </div>
+</section>
+<section id="complain_list2">
+    <div class="container2">
+        <h1 class="probootstrap-heading probootstrap-animate" style="color: black; font-size: 2.6rem">Today's CheckOut</h1>
+        <hr style="border: solid 0.5px">
+        <% if (checkoutroom != null) { %>
+            <% for (var q of checkoutroom)  { %>
+                <% var name = q.ENG_FIRST_NAME +" "+ q.ENG_LAST_NAME%>
+            <div class="row">
+                <div class="probootstrap-gutter40">
+                    <div class="row">
+                        <div class="col-sm-4 text-center" style="border-radius: 20px; padding: 1% 0 4% 0; line-height: 2rem;">
+                            <div class="review-block-name">객실 번호 : <strong style="color: #903479; font-size: 1.5rem"><%=q.ROOM_NUM%></strong></div>
+                            <div class="review-block-room">예약 ID : <strong><%=q.RESERVATION_ID%></strong></div>
+                            <div class="review-block-room">룸타입 : <strong><%=q.ROOM_TYPE%></strong></div>
+                            <div class="review-block-room">예약자 이름 : <strong><%=name%></strong></div>
+                            <div class="rating-selected" style="margin-left: 30%;">
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="padding: 1% 0 4% 0">
+                            <%var z = q.CHECKIN_DATE.toString().substring(0,15)%>
+                            <%var y = q.CHECKOUT_DATE.toString().substring(0,15)%>
+                            <div class="review-block-title"><p>체크인 : <%=z%></p></div>
+                            <div class="review-block-title"><p>체크아웃 : <%=y%></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        <% } } %>
+    </div>
+</section>
+
+
+<section class="probootstrap-half">
+    <div class="image" style="background-image: url(img/slider_2.jpg);"></div>
+    <div class="text">
+        <div class="probootstrap-animate fadeInUp probootstrap-animated">
+            <h2 class="mt0">Best 5 Star hotel</h2>
+            <p><img src="img/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                </div>
+            </div>
+            <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+    </div>
+</section>
+
+<% include ./footer.ejs %>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script src="js/scripts.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/custom.js"></script>
+
+<script src = "/socket.io/socket.io.js"></script>
+<script src = '/js/roomstate.js'></script>
+
+
+</body>
+</html>

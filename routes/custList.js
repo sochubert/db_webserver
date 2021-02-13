@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             console.log(error);
         }
         var cust_list = JSON.parse(JSON.stringify(result));
-        res.render('../views/chanwoong/custList', {
+        res.render('custList', {
             title: 'Cust Info' ,
             cust_info:[req.cookies.employee_id, req.cookies.employee_name, true],
             cust_list : cust_list

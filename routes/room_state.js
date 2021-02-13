@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
                         else {checkoutroom = ccc;}
                         if(result3[0].X != 0){resres = result2;}
                         else{resres = null;}
-                        res.render('../views/chanwoong/room_state', {
+                        res.render('room_state', {
                             title: 'Room_state',
                             cust_info: [req.cookies.employee_id, req.cookies.employee_name, true],
                             room: result,
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
             });
             // }
             // else{
-            //     res.render('../views/chanwoong/room_state', {
+            //     res.render('room_state', {
             //         title: 'Room_state',
             //         cust_info: [req.cookies.employee_id, req.cookies.employee_name, true],
             //         room: result,

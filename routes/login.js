@@ -3,7 +3,7 @@ var router = express.Router();
 var connection = require('./db');
 
 router.get('/', function(req, res, next) {
-  res.render('chanwoong/login', { title: 'Login' , cust_info:null});
+  res.render('login', { title: 'Login' , cust_info:null});
 });
 
 router.post('/',function (req,res) {
